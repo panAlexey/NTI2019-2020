@@ -26,13 +26,23 @@ def analisGosha2(Gosha, num, mn):
         print(sm)
 
 
+def summ(state_ls, coins):
+    res = []
+    if len(coins) > 1:
+        res.extend((*summ(state_ls, coins[:-1]), sum(state_ls) + coins[-1]))
+    else:
+        res.append(sum(state_ls) + coins[0])
+    return res
+
+
 def analisGosha3(prom, current, mn, num, sm):
     if num == 1:
         for ch in len(sm):
             sm[ch] += prom[ch]
 
 
-string = input().split('],[')
+print(summ([2, 3, 4,5], [1, 2, 3, 4]))
+"""string = input().split('],[')
 # print(string)
 string[0] = string[0][1:]
 string[2] = string[2][:-1]
@@ -42,4 +52,4 @@ Clothes = [int(i) for i in string[2].split(', ')]
 
 print(Gosha, Kassir, Clothes, sum(Gosha), sum(Kassir), sum(Clothes))
 analisGosha2(Gosha, 1, 0)
-Products = []
+Products = []"""
