@@ -27,7 +27,7 @@ def analisGosha2(Gosha, num, mn):
 
 
 def summ(state_ls, coins):
-    res = []
+    res = []  # суммирование
     if len(coins) > 1:
         res.extend((*summ(state_ls, coins[:-1]), sum(state_ls) + coins[-1]))
     else:
@@ -41,7 +41,7 @@ def analisGosha3(prom, current, mn, num, sm):
             sm[ch] += prom[ch]
 
 
-print(summ([2, 3, 4,5], [1, 2, 3, 4]))
+print(summ([2, 3, 4, 5], [1, 2, 3, 4]))
 """string = input().split('],[')
 # print(string)
 string[0] = string[0][1:]
