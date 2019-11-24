@@ -12,6 +12,7 @@ def analisGosha(Gosha):
 
 def analisGosha2(Gosha, num, mn):
     print(Gosha, len(Gosha))
+    print('Hello')
 
     for ch in range(len(Gosha)):
          sm = []
