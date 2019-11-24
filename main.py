@@ -10,16 +10,22 @@ def analisGosha(Gosha):
     print(Gosha)
     # for ch in range(len(Gosha) - 1):
 
+def smGosha(Gosha, cnt, sm):
+    pass
+
 def analisGosha2(Gosha, num, mn):
     print(Gosha, len(Gosha))
     print('Hello')
-
     for ch in range(len(Gosha)):
          sm = []
          lengthSM = koefPascal[len(Gosha) - 5]
          for i in range(lengthSM[ch]):
              sm += [0]
-         print(sm)
+         for cnt in range(1, len(Gosha) + 1):
+             sm = smGosha(Gosha, cnt, sm)
+
+
+
 
 def analisGosha3(prom, current, mn, num, sm):
     if num == 1:
