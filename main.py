@@ -14,15 +14,21 @@ def sumGosha():
     pass
 
 def smGosha(Gosha, cnt, sm):
-    # print('-------------------------')
+    print('-------------------------', cnt, len(Gosha))
     if cnt == len(Gosha):
         return [sum(Gosha)]
     if cnt == 1:
         return Gosha
     k = 0
+    sm2 = []
+    print('summa:', len(Gosha) - 1, Gosha)
     for i in range(len(Gosha) - 1):
-        sm1 = smGosha(Gosha[i + 1 :], cnt - 1, sm)
-        print(sm1)
+         sm1 = smGosha(Gosha[i + 1:], cnt - 1, sm)
+         for j in range(len(sm1)):
+             sm1[j] += Gosha[i]
+         sm2.extend(sm1)
+         print(sm1, sm2)
+    return sm1
 
 
 def analisGosha2(Gosha, num, mn):
@@ -31,13 +37,13 @@ def analisGosha2(Gosha, num, mn):
     for ch in range(len(Gosha)):
          sm = []
          lengthSM = koefPascal[len(Gosha) - 5]
-         print(ch, '----')
+         print(ch, '---- koef Pascal: ', lengthSM)
          for i in range(lengthSM[ch]):
-             sm += [0]
-         for cnt in range(1, 3):
-             sm = smGosha(Gosha, cnt, sm)
-             # print(sm)
-
+             sm += [0] # ch + 1 - по сколько чисел суммируем
+         print(sm)
+         # for cnt in range(1, len(Gosha) + 1):
+         sm = smGosha(Gosha, ch + 1, sm)
+         print(ch + 1, '->', sm)
 
 
 
