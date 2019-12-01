@@ -24,26 +24,28 @@ def smGosha(Gosha, cnt, sm):
     print('summa:', len(Gosha) - 1, Gosha)
     for i in range(len(Gosha) - 1):
          sm1 = smGosha(Gosha[i + 1:], cnt - 1, sm)
+         print(sm1)
          for j in range(len(sm1)):
              sm1[j] += Gosha[i]
          sm2.extend(sm1)
-         print(sm1, sm2)
-    return sm1
+         print(i, cnt, '---', sm1, sm2)
+    return sm2
 
 
 def analisGosha2(Gosha, num, mn):
     print(Gosha, len(Gosha))
     print('Hello')
+    sm = []
     for ch in range(len(Gosha)):
-         sm = []
+         # sm = []
          lengthSM = koefPascal[len(Gosha) - 5]
          print(ch, '---- koef Pascal: ', lengthSM)
-         for i in range(lengthSM[ch]):
-             sm += [0] # ch + 1 - по сколько чисел суммируем
+         # for i in range(lengthSM[ch]):
+         #     sm += [0] # ch + 1 - по сколько чисел суммируем
          print(sm)
          # for cnt in range(1, len(Gosha) + 1):
-         sm = smGosha(Gosha, ch + 1, sm)
-         print(ch + 1, '->', sm)
+         sm += smGosha(Gosha, ch + 1, sm)
+         print(ch + 1, '---------------------------------------------------------------->', sm, 'len = ', len(sm))
 
 
 
