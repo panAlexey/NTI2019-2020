@@ -14,9 +14,6 @@
 #     pass
 
 
-
-
-
 def smGosha(Gosha, cnt):
     # print('-------------------------', cnt, len(Gosha))
     if cnt == len(Gosha):
@@ -34,7 +31,6 @@ def smGosha(Gosha, cnt):
          sm2.extend(sm1)
          # print(i, cnt, '---', sm1, sm2)
     return sm2
-
 
 
 def smProduct(Gosha, cnt, sm):
@@ -60,7 +56,6 @@ def smProduct(Gosha, cnt, sm):
          print(i, cnt, '---', sm1, sm2)
     print(sm2)
     return sm2
-
 
 
 def analisProducts(Gosha):
@@ -118,9 +113,26 @@ Clothes = [int(i) for i in string[2].split(', ')]
 # print(Gosha, Kassir, Clothes, sum(Gosha), sum(Kassir), sum(Clothes))
 moneyKassir = analisGosha2(Kassir)
 moneyGosha = analisGosha2(Gosha)
+maxGosha = max(moneyGosha)
 moneyProduct = analisProducts(Clothes)
 print('money Products: ', moneyProduct)
 print('moneyGosha: ', moneyGosha)
 print('moneyKassir', moneyKassir)
+
+
+
+moneyProduct = list(filter(lambda x: x[0] <= maxGosha, moneyProduct))
+maxProductCnt = max(moneyProduct, key=lambda x: x[1])[1]
+print("maxProductCnt", maxProductCnt)
+for i in range((maxProductCnt), -1, -1):
+    moneyProductTmp = list(filter(lambda x: x[1] == i + 1, moneyProduct))
+    print(moneyProductTmp)
+    moneyProductTmp = list(map(lambda x: x[0], moneyProductTmp))
+    print(moneyProductTmp)
+
+
+
+
+
 
 Products= []
