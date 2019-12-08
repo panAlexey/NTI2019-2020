@@ -112,7 +112,9 @@ Clothes = [int(i) for i in string[2].split(', ')]
 
 # print(Gosha, Kassir, Clothes, sum(Gosha), sum(Kassir), sum(Clothes))
 moneyKassir = analisGosha2(Kassir)
+moneyKassir.sort()
 moneyGosha = analisGosha2(Gosha)
+moneyGosha.sort()
 maxGosha = max(moneyGosha)
 moneyProduct = analisProducts(Clothes)
 print('money Products: ', moneyProduct)
@@ -122,15 +124,27 @@ print('moneyKassir', moneyKassir)
 
 
 moneyProduct = list(filter(lambda x: x[0] <= maxGosha, moneyProduct))
+print('money Products: ', moneyProduct)
 maxProductCnt = max(moneyProduct, key=lambda x: x[1])[1]
 print("maxProductCnt", maxProductCnt)
+sumGosha = 0
+cntGosha = 0
 for i in range((maxProductCnt), -1, -1):
-    moneyProductTmp = list(filter(lambda x: x[1] == i + 1, moneyProduct))
+    moneyProductTmp = list(filter(lambda x: x[1] == i, moneyProduct))
     print(moneyProductTmp)
-    moneyProductTmp = list(map(lambda x: x[0], moneyProductTmp))
+    moneyProductTmp = sorted(list(map(lambda x: x[0], moneyProductTmp)))
     print(moneyProductTmp)
+    for item in moneyProductTmp:
+        if item in moneyGosha:
+            sumGosha = item
+            cntGosha = i
+            break
+    money2 = list(filter(lambda x: x >= min(moneyProductTmp), moneyGosha))
+    print(money2)
+    if sumGosha != 0:
+        break
 
-
+print(sumGosha, cntGosha)
 
 
 
