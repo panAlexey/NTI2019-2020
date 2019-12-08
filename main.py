@@ -139,8 +139,18 @@ for i in range((maxProductCnt), -1, -1):
             sumGosha = item
             cntGosha = i
             break
-    money2 = list(filter(lambda x: x >= min(moneyProductTmp), moneyGosha))
-    print(money2)
+    moneyG = list(filter(lambda x: x >= min(moneyProductTmp), moneyGosha))
+    print(moneyG)
+    sumGosha1 = 0
+    for product in moneyProductTmp:
+        for key in moneyG:
+            if key - product in moneyKassir:
+                sumGosha1 = product
+                break
+        if sumGosha1 > 0:
+            break
+    if sumGosha1 < sumGosha:
+        sumGosha = sumGosha1
     if sumGosha != 0:
         break
 
