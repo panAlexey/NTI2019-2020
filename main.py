@@ -49,7 +49,7 @@ def smProduct(Gosha, cnt, sm):
         return list(map(list,list(zip(Gosha, cntM))))
     k = 0
     sm2 = []
-    print('summa:', len(Gosha) - 1, Gosha)
+    print('----------------------summa:', len(Gosha) - 1, Gosha)
     for i in range(len(Gosha) - 1):
          sm1 = smProduct(Gosha[i + 1:], cnt - 1, sm)
          # print(sm1)
@@ -73,10 +73,14 @@ def analisProducts(Gosha):
          # print(ch, '---- koef Pascal: ', lengthSM)
          # for i in range(lengthSM[ch]):
          #     sm += [0] # ch + 1 - по сколько чисел суммируем
-         # print(sm)
+         # print(ch + 1, '****************************************************************************')
          # for cnt in range(1, len(Gosha) + 1):
-         sm.extend(smProduct(Gosha, ch + 1, sm))
+         sm1 = smGosha(Gosha, ch + 1)
+         sm2 = [ch + 1] * len(sm1)
+         sm += list(zip(sm1, sm2))
          # print(ch + 1, '---------------------------------------------------------------->', sm, 'len = ', len(sm))
+
+
     return list(set(sm))
 
 
@@ -92,7 +96,8 @@ def analisGosha2(Gosha):
          #     sm += [0] # ch + 1 - по сколько чисел суммируем
          # print(sm)
          # for cnt in range(1, len(Gosha) + 1):
-         sm += smGosha(Gosha, ch + 1)
+         sm.extend(smGosha(Gosha, ch + 1))
+
          # print(ch + 1, '---------------------------------------------------------------->', sm, 'len = ', len(sm))
     return list(set(sm))
 
