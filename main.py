@@ -145,12 +145,15 @@ for i in range((maxProductCnt), -1, -1):
     for product in moneyProductTmp:
         for key in moneyG:
             if key - product in moneyKassir:
+                print(key - product)
                 sumGosha1 = product
                 break
         if sumGosha1 > 0:
+            print(sumGosha1)
             break
-    if sumGosha1 < sumGosha:
+    if sumGosha1 < sumGosha or sumGosha == 0:
         sumGosha = sumGosha1
+        cntGosha = i
     if sumGosha != 0:
         break
 
