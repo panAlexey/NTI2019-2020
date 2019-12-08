@@ -117,39 +117,39 @@ moneyGosha = analisGosha2(Gosha)
 moneyGosha.sort()
 maxGosha = max(moneyGosha)
 moneyProduct = analisProducts(Clothes)
-print('money Products: ', moneyProduct)
-print('moneyGosha: ', moneyGosha)
-print('moneyKassir', moneyKassir)
+# print('money Products: ', moneyProduct)
+# print('moneyGosha: ', moneyGosha)
+# print('moneyKassir', moneyKassir)
 
 
 
 moneyProduct = list(filter(lambda x: x[0] <= maxGosha, moneyProduct))
-print('money Products: ', moneyProduct)
+# print('money Products: ', moneyProduct)
 maxProductCnt = max(moneyProduct, key=lambda x: x[1])[1]
-print("maxProductCnt", maxProductCnt)
+# print("maxProductCnt", maxProductCnt)
 sumGosha = 0
 cntGosha = 0
 for i in range((maxProductCnt), -1, -1):
     moneyProductTmp = list(filter(lambda x: x[1] == i, moneyProduct))
-    print(moneyProductTmp)
+    # print(moneyProductTmp)
     moneyProductTmp = sorted(list(map(lambda x: x[0], moneyProductTmp)))
-    print(moneyProductTmp)
+    # print(moneyProductTmp)
     for item in moneyProductTmp:
         if item in moneyGosha:
             sumGosha = item
             cntGosha = i
             break
     moneyG = list(filter(lambda x: x >= min(moneyProductTmp), moneyGosha))
-    print(moneyG)
+    # print(moneyG)
     sumGosha1 = 0
     for product in moneyProductTmp:
         for key in moneyG:
             if key - product in moneyKassir:
-                print(key - product)
+                # print(key - product)
                 sumGosha1 = product
                 break
         if sumGosha1 > 0:
-            print(sumGosha1)
+            # print(sumGosha1)
             break
     if sumGosha1 < sumGosha or sumGosha == 0:
         sumGosha = sumGosha1
@@ -157,8 +157,8 @@ for i in range((maxProductCnt), -1, -1):
     if sumGosha != 0:
         break
 
-print(sumGosha, cntGosha)
-
+# print(sumGosha, cntGosha)
+print(sumGosha)
 
 
 
