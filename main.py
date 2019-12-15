@@ -159,7 +159,3 @@ for i in range((maxProductCnt), -1, -1):
 
 # print(sumGosha, cntGosha)
 print(sumGosha)
-
-
-
-Products= []
