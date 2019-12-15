@@ -12,7 +12,7 @@ def func(dct, ocher, num, ocher1):
 
 string, numM = input().split(']],')
 
-
+numM = int(numM[:-1])
 # print(string[3::])
 spis = string[3::].split('], [')
 # print(spis)
@@ -37,8 +37,25 @@ for ch in range(len(dct)):
         ocher1 = [ch]
         ocher += func(dct, ocher, ch, ocher1)
 
-print(ocher, len(ocher), len(dct))
-
+# print(ocher, len(ocher), len(dct))
+superOcher = []
+prev = 0
+for i in range(len(ocher) - 1):
+    if ocher[i + 1] not in dct[ocher[i]]:
+        superOcher.append(ocher[prev:i+1])
+        prev = i + 1
+if prev < i:
+    superOcher.append(ocher[prev:])
+cnt = 0
+for j in range(len(superOcher)):
+    if len(superOcher[j]) <= numM:
+        cnt += 1
+        continue
+    ost = len(superOcher[j]) % numM
+    cnt += len(superOcher[j]) // numM
+    if ost != 0:
+        cnt += 1
+print(cnt)
 
     # if ch == 0:
     #     ocher += [key]
@@ -59,5 +76,4 @@ print(ocher, len(ocher), len(dct))
 
 # print(dct)
 # print(numM[:-1])
-numM = int(numM[:-1])
-print(numM)
+
