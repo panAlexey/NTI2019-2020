@@ -44,8 +44,9 @@ for i in range(len(ocher) - 1):
     if ocher[i + 1] not in dct[ocher[i]]:
         superOcher.append(ocher[prev:i+1])
         prev = i + 1
-if prev < i:
+if prev <= i + 1:
     superOcher.append(ocher[prev:])
+# print(superOcher)
 cnt = 0
 for j in range(len(superOcher)):
     if len(superOcher[j]) <= numM:
