@@ -10,6 +10,39 @@ def func(dct, ocher, num, ocher1):
     return ocher1
 
 
+def func2(dct, ocher, num, ocher1):
+    pass
+
+def funcCNT(superOcher, numM):
+    cnt = 0
+    for j in range(len(superOcher)):
+        if len(superOcher[j]) <= numM:
+            cnt += 1
+            continue
+        ost = len(superOcher[j]) % numM
+        cnt += len(superOcher[j]) // numM
+        if ost != 0:
+            cnt += 1
+    return cnt
+
+def funcTakeQueue(ocher, dct):
+    for ch in range(len(dct)):
+        if ch not in ocher:
+            ocher1 = [ch]
+            ocher += func(dct, ocher, ch, ocher1)
+    return ocher
+
+def funcFormOcher(ocher, superOcher, dct):
+    prev = 0
+    for i in range(len(ocher) - 1):
+        if ocher[i + 1] not in dct[ocher[i]]:
+            superOcher.append(ocher[prev:i + 1])
+            prev = i + 1
+    if prev <= i + 1:
+        superOcher.append(ocher[prev:])
+    return superOcher
+
+
 string, numM = input().split(']],')
 
 numM = int(numM[:-1])
@@ -30,33 +63,61 @@ for item in Data:
         if item[key] == 1 and key != i:
             dct[i] += [key]
 ocher = []
-# for key in dct:
-#     print(key, dct[key])
-for ch in range(len(dct)):
-    if ch not in ocher:
-        ocher1 = [ch]
-        ocher += func(dct, ocher, ch, ocher1)
+for key in dct:
+     print(key, dct[key])
+cntM = []
+while True:
+    ocher = funcTakeQueue(ocher, dct)
 
-# print(ocher, len(ocher), len(dct))
-superOcher = []
-prev = 0
-for i in range(len(ocher) - 1):
-    if ocher[i + 1] not in dct[ocher[i]]:
-        superOcher.append(ocher[prev:i+1])
-        prev = i + 1
-if prev <= i + 1:
-    superOcher.append(ocher[prev:])
-# print(superOcher)
-cnt = 0
-for j in range(len(superOcher)):
-    if len(superOcher[j]) <= numM:
-        cnt += 1
-        continue
-    ost = len(superOcher[j]) % numM
-    cnt += len(superOcher[j]) // numM
-    if ost != 0:
-        cnt += 1
-print(cnt)
+    # print(ocher, len(ocher), len(dct))
+    superOcher = []
+    superOcher = funcFormOcher(ocher, superOcher, dct)
+    print(superOcher)
+
+    superOcher2 = []
+    superOcher3 = []
+    for ocher in superOcher:
+        if len(ocher) % numM != 0:
+            superOcher3.append(ocher)
+        else:
+            superOcher2.append(ocher)
+
+    ocher3 = []
+    for och in superOcher3[::-1]:
+        ocher3.extend(och[::-1])
+    # print(ocher3)
+
+    ocher3end = [ocher3.pop(0)]
+    # print('--------', ocher3end, ocher3)
+
+    for ch in range(len(ocher3)):
+        # print(dct[ocher3end[-1]])
+        lng = len(ocher3end)
+        for chi in range(len(dct[ocher3end[-1]])):
+            if dct[ocher3end[-1]][chi] in ocher3:
+                other = dct[ocher3end[-1]][chi]
+                ocher3end.append(other)
+                ocher3.remove(other)
+                print(ocher3, ocher3end)
+                break
+        if len(ocher3) != 0 and len(ocher3end) - lng > 0:
+            ocher3end.append(ocher3.pop(0))
+    superOcher3 = []
+    superOcher3 = funcFormOcher(ocher3end, superOcher3, dct)
+    for ch in superOcher2:
+        superOcher3.append(ch)
+    print(superOcher3)
+
+    cnt1 = funcCNT(superOcher3, numM)
+
+    cnt = funcCNT(superOcher, numM)
+
+    print(cnt, cnt1)
+    cntM += [cnt]
+
+    break
+
+
 
     # if ch == 0:
     #     ocher += [key]
