@@ -13,6 +13,25 @@ def func(dct, ocher, num, ocher1):
 def func2(dct, ocher, num, ocher1):
     pass
 
+
+def funcEnumarationQueue(ocher3, dct):
+    ocher3end = [ocher3.pop(0)]
+    # print('--------', ocher3end, ocher3)
+
+    for ch in range(len(ocher3)):
+        # print(dct[ocher3end[-1]])
+        lng = len(ocher3end)
+        for chi in range(len(dct[ocher3end[-1]])):
+            if dct[ocher3end[-1]][chi] in ocher3:
+                other = dct[ocher3end[-1]][chi]
+                ocher3end.append(other)
+                ocher3.remove(other)
+                print(ocher3, ocher3end)
+                break
+        if len(ocher3) != 0 and len(ocher3end) - lng > 0:
+            ocher3end.append(ocher3.pop(0))
+    return ocher3end
+
 def funcCNT(superOcher, numM):
     cnt = 0
     for j in range(len(superOcher)):
@@ -87,21 +106,8 @@ while True:
         ocher3.extend(och[::-1])
     # print(ocher3)
 
-    ocher3end = [ocher3.pop(0)]
-    # print('--------', ocher3end, ocher3)
+    ocher3end = funcEnumarationQueue(ocher3, dct)
 
-    for ch in range(len(ocher3)):
-        # print(dct[ocher3end[-1]])
-        lng = len(ocher3end)
-        for chi in range(len(dct[ocher3end[-1]])):
-            if dct[ocher3end[-1]][chi] in ocher3:
-                other = dct[ocher3end[-1]][chi]
-                ocher3end.append(other)
-                ocher3.remove(other)
-                print(ocher3, ocher3end)
-                break
-        if len(ocher3) != 0 and len(ocher3end) - lng > 0:
-            ocher3end.append(ocher3.pop(0))
     superOcher3 = []
     superOcher3 = funcFormOcher(ocher3end, superOcher3, dct)
     for ch in superOcher2:
