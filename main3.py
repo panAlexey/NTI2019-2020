@@ -26,7 +26,7 @@ def funcEnumarationQueue(ocher3, dct):
                 other = dct[ocher3end[-1]][chi]
                 ocher3end.append(other)
                 ocher3.remove(other)
-                print(ocher3, ocher3end)
+                # print(ocher3, ocher3end)
                 break
         if len(ocher3) != 0 and len(ocher3end) - lng > 0:
             ocher3end.append(ocher3.pop(0))
@@ -82,8 +82,8 @@ for item in Data:
         if item[key] == 1 and key != i:
             dct[i] += [key]
 ocher = []
-for key in dct:
-     print(key, dct[key])
+# for key in dct:
+#      print(key, dct[key])
 cntM = []
 while True:
     ocher = funcTakeQueue(ocher, dct)
@@ -91,7 +91,7 @@ while True:
     # print(ocher, len(ocher), len(dct))
     superOcher = []
     superOcher = funcFormOcher(ocher, superOcher, dct)
-    print(superOcher)
+    # print(superOcher)
 
     superOcher2 = []
     superOcher3 = []
@@ -112,13 +112,13 @@ while True:
     superOcher3 = funcFormOcher(ocher3end, superOcher3, dct)
     for ch in superOcher2:
         superOcher3.append(ch)
-    print(superOcher3)
+    # print(superOcher3)
 
     cnt1 = funcCNT(superOcher3, numM)
 
     cnt = funcCNT(superOcher, numM)
 
-    print(cnt, cnt1)
+    print(min(cnt, cnt1))
     cntM += [cnt]
 
     break
